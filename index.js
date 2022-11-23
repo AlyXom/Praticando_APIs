@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
-const axios = require('axios')
+const cors = require('cors')
 
 app.use(express.json())
+
+app.use(cors())
 
 let users = [
     {
@@ -13,18 +15,22 @@ let users = [
     }
 ]
 
-app.listen(3000, console.log('Rodando servidor'))
+app.listen(3000, console.log('Running Server'))
 
-app.get('/api', (req,res)=>{
-    return res.json(users)
-})
+app.route('/api').get((req,res)=>res.json(users))
 
 app.route('/api').post((req,res) =>{
     const lastId = users[users.length - 1].id;
-    const newUser = {
+    users.push({
         id: lastId + 1,
         nome: req.body.name,
         idade: req.body.age,
         cidade: req.body.city,
-    }
+        
+    })
+    res.json('saved User')
+})
+
+app.route('/api').put((req,res)=>{
+    
 })
