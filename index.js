@@ -31,6 +31,24 @@ app.route('/api').post((req,res) =>{
     res.json('saved User')
 })
 
-app.route('/api').put((req,res)=>{
-    
+app.route('/api/:id').get((req, res) => {
+    const userId = req.params.id
+  
+    const user = users.find(user => Number(user.id) === Number(userId))
+  
+    if (!user) {
+      return res.json('User nor found!')
+    }
+  
+    res.json(user)
+  })
+
+  app.route('/api/:id').put((req, res) => {
+    const userId = req.params.id
+  
+    const user = users.find(user => Number(user.id) === Number(userId))
+  
+    if (!user) {
+      return res.json('User nor found!')
+    }
 })
