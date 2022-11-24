@@ -23,9 +23,9 @@ app.route('/api').post((req,res) =>{
     const lastId = users[users.length - 1].id;
     users.push({
         id: lastId + 1,
-        nome: req.body.name,
-        idade: req.body.age,
-        cidade: req.body.city,
+        name: req.body.name,
+        age: req.body.age,
+        city: req.body.city,
         
     })
     res.json('saved User')
